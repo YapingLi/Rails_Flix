@@ -1,4 +1,4 @@
-<h2>movie index page</h2>
+<h2><%= pluralize(@movies.size, 'Movie')%></h2>
 
 <ul>
     <% @movies.each do |movie| %>
@@ -7,7 +7,7 @@
                 <h2><%= movie.title %></h2>
             </header>
             <p>
-                <%= movie.description %>
+                <%= truncate(movie.description, length:40) %>
             </p>
             <table>
                 <tr>
@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <th>Total Gross:</th>
-                    <td><%= number_to_currency(movie.total_gross) %></td>
+                    <td><%= format_total_gross(movie) %></td>
                 </tr>
             </table>
         </article>
